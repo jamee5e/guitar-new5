@@ -1,14 +1,14 @@
 import firebase from "../firebase/config";
 
-export const logoutUser = () => {
+export const createUser = (email, password) => {
  
     return async function(dispatch){
- 
-        await firebase.logout();
-        dispatch({type: "LOGIN_USER", payload: {} });
-        dispatch({type: "CREATE_USER", payload: {} });
-  
+      
+        const user = await firebase.signin(email, password);
+        console.log(user);
+        dispatch({type: "CREATE_USER", payload: user});
+      
+    
     }
- 
 
 }

@@ -27,21 +27,20 @@ class Firebase {
         this.db=firebase.firestore();
     }
 
-    async signin(email, password){
-        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
-            console.log(err);
-        });
-
-        return user;
-    }
-
     async login(email, password){
         const user = await firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
         console.log(err);
         });
-
         return user;
     }
+
+    async signin(email, password){
+        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+            console.log(err);
+        });
+        return user;
+    }
+
     async logout(){
         const logout = await firebase.auth().signOut().catch(err => console.log(err));
         return logout;
